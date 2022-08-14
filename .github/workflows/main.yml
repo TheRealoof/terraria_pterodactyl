@@ -1,0 +1,15 @@
+name: Action
+
+on: push
+
+jobs:
+  build:
+  
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build & Push Image
+      run: |
+        echo "${{ secrets.DOCKERPW }}" | docker login -u "therealoof" --password-stdin
+        docker image build -t therealoof/terraria:latest .
+        docker push therealoof/terraria:latest
