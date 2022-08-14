@@ -5,9 +5,10 @@ on: push
 jobs:
   build:
   
-    runs-on: [linux, ARM64]
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
+    - uses: pguyot/arm-runner-action@v2
     - name: Build & Push Image
       run: |
         echo "${{ secrets.DOCKERPW }}" | docker login -u "therealoof" --password-stdin
